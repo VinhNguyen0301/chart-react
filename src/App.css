@@ -1,5 +1,7 @@
 .root-container {
-  background-color: lightblue;
+  margin: 0;
+  background-color: rgba(220, 231, 248, 0.5);
+
   width: 100vw; /* 100% of viewport width */
   height: 100vh; /* 100% of viewport height */
   display: flex;

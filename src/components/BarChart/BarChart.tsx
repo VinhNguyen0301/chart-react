@@ -1,12 +1,41 @@
-import React from "react";
-import "./BarChart.css"; // Assuming you have a CSS file for styling
+import React, { useEffect, useState } from "react";
+import Chart from "react-apexcharts";
 
-const BarChart: React.FC = () => {
+interface ChartData {
+  name: string;
+  data: number[];
+}
+
+interface ChartOptions {
+  // Define your chart options interface here
+  // For example:
+  // xaxis: {
+  //   categories: string[];
+  // }
+}
+
+interface Props {
+  chartData: ChartData[];
+  chartOptions: ChartOptions;
+}
+
+const BarChart: React.FC<Props> = ({ chartData, chartOptions }) => {
+  const [data, setData] = useState<ChartData[]>([]);
+  const [options, setOptions] = useState<ChartOptions>({});
+
+  useEffect(() => {
+    setData(chartData);
+    setOptions(chartOptions);
+  }, [chartData, chartOptions]);
+
   return (
-    <div className="bar-chart">
-      <div className="component-box"></div>
-      {/* Your bar chart content goes here */}
-    </div>
+    <Chart
+      options={options}
+      series={data}
+      type="bar"
+      width="100%"
+      height="100%"
+    />
   );
 };
 
